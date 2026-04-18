@@ -26,6 +26,7 @@ html, body {
   font-display: swap;
 }
 
+
 /* ── ANIMATIONS ── */
 @keyframes pulse {
   0%, 100% { opacity: 1; }

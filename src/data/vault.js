@@ -44,7 +44,7 @@ export const VAULT = [
       pyqs: "https://drive.google.com/drive/folders/1zppyhHOI1W-OtbDUjKLTfO0cEuK0-CC5?usp=drive_link",
       practice:
         "https://drive.google.com/drive/folders/1kMlhILpkHgZoMqO0OGusEC8R7V3uElZF?usp=drive_link",
-      // lab: "", // leave "" if no lab for this subject
+      // leave "" if no lab for this subject
     },
   },
   {
@@ -95,7 +95,6 @@ export const VAULT = [
       pyqs: "https://drive.google.com/drive/folders/1gPkHvCcnkzOY8IBkBGkeiDa8p6GjQET0?usp=drive_link",
       practice:
         "https://drive.google.com/drive/folders/1k0uXZt-E0D8lOMoO-RX-k_XX3mohF0Q4?usp=drive_link",
-      // lab: "",
     },
   },
   {
@@ -143,7 +142,6 @@ export const VAULT = [
         "https://drive.google.com/file/d/1NCGKS7haPx_9imhAfDNxIxYZD7WCDjK9/view?usp=drive_link",
       pyqs: "",
       practice: "",
-      // lab: "",
     },
   },
 ];
