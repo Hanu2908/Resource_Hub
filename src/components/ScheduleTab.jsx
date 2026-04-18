@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Schedule Tab — full exam list with live countdown per row
 // ─────────────────────────────────────────────────────────────────────────────
-import { SectionLabel, FooterNote } from "./UI.jsx";
+import { SectionLabel } from "./UI.jsx";
 import { CD_THRESHOLDS } from "../config.js";
 
 function cdAccent(days) {
@@ -100,7 +100,11 @@ export default function ScheduleTab({ exams }) {
         </div>
       ))}
 
-      <FooterNote>REPORT TIME 2:00 PM · EXAM 2:30–5:30 PM · CARRY ADMIT CARD + ID</FooterNote>
+      {/* Uses .footer-note class from global.css so it wraps on mobile */}
+      <div className="footer-note">
+        REPORT TIME 2:00 PM<br />
+        EXAM 2:30–5:30 PM · CARRY ADMIT CARD + ID
+      </div>
     </div>
   );
 }
