@@ -8,7 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect } from "react";
-// import { Analytics } from "@vercel/analytics/react"; // ← fixed: /react not /next
+import { Analytics } from "@vercel/analytics/react"; // ← fixed: /react not /next
 import { APP_TITLE, APP_SUBTITLE, TABS, BRANCHES, DEFAULT_BRANCH, THEME } from "./config.js";
 import { EXAMS } from "./data/exams.js";
 import { VAULT } from "./data/vault.js";
@@ -83,7 +83,7 @@ export default function App() {
   return (
     <>
       {/* Vercel Analytics — renders nothing visible, just fires page events */}
-      {/* <Analytics /> */}
+      <Analytics />
 
 
       <div style={{
