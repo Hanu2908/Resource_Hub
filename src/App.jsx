@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { APP_TITLE, APP_SUBTITLE, TABS, BRANCHES, DEFAULT_BRANCH, THEME } from "./config.js";
 import { EXAMS } from "./data/exams.js";
 import { VAULT } from "./data/vault.js";
+import { Analytics } from "@vercel/analytics/next"
 import HeroCountdown      from "./components/HeroCountdown.jsx";
 import ScheduleTab        from "./components/ScheduleTab.jsx";
 import VaultTab           from "./components/VaultTab.jsx";
