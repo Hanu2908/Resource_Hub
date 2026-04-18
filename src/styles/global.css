@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+/* CSS variables are injected by App.jsx from config.js THEME object */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { display: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── UTILITY CLASSES ── */
+.fade-in  { animation: fadeIn 0.2s ease; }
+.live-dot { animation: pulse 2s ease-in-out infinite; }
+
+/* ── BRANCH FILTER BUTTONS ── */
+.branch-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border: 1.5px solid var(--border-mid);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.branch-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-faint);
+}
+
+/* ── TAB NAV ── */
+.tab-btn {
+  flex: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 9px 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-meta);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1.5px;
+  transition: all 0.12s;
+}
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── SCHEDULE ROWS ── */
+.exam-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-faint);
+  transition: opacity 0.2s;
+}
+.exam-row:last-child { border: none; }
+.exam-row.done       { opacity: 0.3; }
+
+/* ── VAULT GRID ── */
+.vault-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ── INPUTS ── */
+.cc-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-mid);
+  color: var(--text-primary);
+  padding: 9px 11px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.12s;
+  margin-bottom: 6px;
+}
+.cc-input:focus  { border-color: var(--accent); }
+.cc-textarea     { resize: vertical; min-height: 66px; line-height: 1.5; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 8px 18px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--bg-page);
+}
+
+.btn-vault-action {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-faint);
+  color: var(--border-strong);
+  padding: 4px 6px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+  width: 100%;
+}
+.btn-vault-action:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-vault-action.has-link {
+  color: var(--text-secondary);
+}
+
+/* ── NOTICE CARDS ── */
+.notice-card {
+  border: 1px solid var(--border-faint);
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  position: relative;
+}
+.notice-card.pinned {
+  border-color: rgba(245, 197, 24, 0.2);
+  border-left: 3px solid var(--accent);
+}
+
+.notice-del {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #252525;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: color 0.1s;
+}
+.notice-del:hover { color: var(--status-urgent); }
