@@ -14,11 +14,11 @@ export default function HeroCountdown({ exam, cd }) {
       position: "relative",
       overflow: "hidden",
     }}>
-      {/* Glow corner effect */}
+      {/* Glow corner — uses CSS variable so it respects theme changes */}
       <div style={{
         position: "absolute", bottom: 0, right: 0,
         width: "80px", height: "80px",
-        background: "radial-gradient(circle at bottom right, rgba(245,197,24,0.08) 0%, transparent 70%)",
+        background: "radial-gradient(circle at bottom right, var(--accent-faint) 0%, transparent 70%)",
         pointerEvents: "none",
       }} />
 
@@ -32,7 +32,7 @@ export default function HeroCountdown({ exam, cd }) {
 
       <div style={{
         fontFamily: "'Bebas Neue', cursive",
-        fontSize: "26px", letterSpacing: "1.5px", color: "#fff", lineHeight: 1,
+        fontSize: "26px", letterSpacing: "1.5px", color: "var(--text-primary)", lineHeight: 1,
       }}>
         {exam.shortName}
       </div>
@@ -47,9 +47,9 @@ export default function HeroCountdown({ exam, cd }) {
       {/* Countdown numbers */}
       <div style={{ display: "flex", alignItems: "flex-end", gap: 0, marginTop: "12px" }}>
         {[
-          { val: cd.days,  unit: "DAYS" },
-          { val: cd.hours, unit: "HRS"  },
-          { val: cd.mins,  unit: "MIN"  },
+          { val: cd.days, unit: "DAYS" },
+          { val: cd.hours, unit: "HRS" },
+          { val: cd.mins, unit: "MIN" },
         ].map((item, i) => (
           <div key={i} style={{ display: "flex", alignItems: "flex-end" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: "52px" }}>
@@ -72,7 +72,7 @@ export default function HeroCountdown({ exam, cd }) {
               <div style={{
                 fontFamily: "'Bebas Neue', cursive",
                 fontSize: "40px",
-                color: "rgba(245,197,24,0.25)",
+                color: "var(--accent-faint)",
                 lineHeight: 1, padding: "0 2px", marginBottom: "2px",
               }}>
                 :
