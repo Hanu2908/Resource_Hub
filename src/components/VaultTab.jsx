@@ -59,7 +59,7 @@ function FolderButton({ label, url, accent }) {
       cursor: "default",
       letterSpacing: "0.5px",
     }}>
-      {label} — Coming Soon
+      {label} - Adding Soon
     </div>
   );
 }
@@ -102,14 +102,19 @@ function VaultCard({ subject }) {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
-        {FOLDER_TYPES.map(ft => (
-          <FolderButton
-            key={ft.key}
-            label={ft.label}
-            url={subject.folders[ft.key]}
-            accent={subject.accent}
-          />
-        ))}
+        {FOLDER_TYPES.map(ft => {
+          // Key doesn't exist on this subject → hide entirely
+          if (!(ft.key in subject.folders)) return null;
+
+          return (
+            <FolderButton
+              key={ft.key}
+              label={ft.label}
+              url={subject.folders[ft.key]}
+              accent={subject.accent}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -119,7 +124,7 @@ function VaultCard({ subject }) {
 
 function ContactCard() {
   const hasWhatsApp = CONTACT.WHATSAPP_LINK && !CONTACT.WHATSAPP_LINK.includes("XXXXXXXXXX");
-  const hasGroup    = !!CONTACT.GROUP_LINK;
+  const hasGroup = !!CONTACT.GROUP_LINK;
 
   return (
     <div style={{
@@ -140,7 +145,7 @@ function ContactCard() {
         lineHeight: 1.6,
         textTransform: "uppercase",
       }}>
-        File Missing<br/>or Broken Link?
+        File Missing<br />or Broken Link?
       </div>
 
       {hasWhatsApp && (

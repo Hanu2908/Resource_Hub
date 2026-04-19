@@ -51,40 +51,40 @@ export const CONTACT = {
 // These values are injected as CSS variables across the entire app.
 
 export const THEME = {
-  // Backgrounds
-  bgPage: "#111111", // main page background
-  bgCard: "#171717", // card / input background
-  bgHover: "#0f0f0f", // subtle hover state
+  bgPage: "#0A0A0F", // deep dark, blue-violet tinted — not flat black
+  bgCard: "#13131C", // card surfaces
+  bgHover: "#1A1A28", // hover state
 
   // Borders
-  borderFaint: "#141414", // very faint borders
-  borderMid: "#1c1c1c", // standard borders
-  borderStrong: "#A0A0A0", // visible borders on hover
+  borderFaint: "#1C1C2E", // barely visible, purple-tinted
+  borderMid: "#2A2A40", // standard borders
+  borderStrong: "#6B6B9A", // visible text on hover
 
   // Text
-  textPrimary: "#ffffff", // main readable text
-  textSecondary: "#B3B3B3", // muted labels, descriptions
-  textDim: "#A0A0A0", // very faint labels (improved for 4.64:1 contrast)
-  textMeta: "#817d7d", // header meta text (improved for 4.57:1 contrast)
+  textPrimary: "#F0F0FF", // near-white with cool tint
+  textSecondary: "#9090B8", // muted purple-grey
+  textDim: "#4A4A6A", // very faint labels
+  textMeta: "#6060A0", // header subtitl
 
   // Accent — the dominant brand colour
-  accent: "#e1b000", // ← change this to repaint the whole app
-  accentFaint: "rgba(245, 197, 24, 0.06)",
-  accentGlow: "rgba(245, 197, 24, 0.03)",
+  accent: "#8B5CF6", // electric violet ← the whole vibe
+  accentFaint: "rgba(139, 92, 246, 0.08)",
+  accentGlow: "rgba(139, 92, 246, 0.04)",
 
   // Status colours
-  statusLive: "#00ff88",
-  statusUrgent: "#ff4444",
-  statusWarn: "#ff9500",
-  statusAudit: "#965aff", // improved for 4.60:1 contrast
+
+  statusLive: "#4ADE80", // bright lime green
+  statusUrgent: "#F43F5E", // rose red — softer than pure red
+  statusWarn: "#FB923C", // orange
+  statusAudit: "#A78BFA", // light violet for audit badge
 };
 
 // ─── 5. COUNTDOWN COLOUR THRESHOLDS ───────────────────────────────────────────
 // Days remaining → colour shown on the schedule screen.
 
 export const CD_THRESHOLDS = [
-  { maxDays: 0, color: "#ff4444" }, // today    → red
-  { maxDays: 3, color: "#ff9500" }, // ≤ 3 days → orange
-  { maxDays: 7, color: "#f5c518" }, // ≤ 7 days → yellow (accent)
-  { maxDays: Infinity, color: "#989898" }, // further  → grey
+  { maxDays: 0, color: "#F43F5E" }, // today    → rose
+  { maxDays: 3, color: "#FB923C" }, // ≤ 3 days → orange
+  { maxDays: 7, color: "#FBBF24" }, // ≤ 7 days → amber
+  { maxDays: Infinity, color: "#4A4A6A" }, // further  → dim
 ];
