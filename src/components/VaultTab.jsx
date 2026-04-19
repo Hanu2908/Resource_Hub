@@ -10,6 +10,12 @@ import { SectionLabel, FooterNote } from "./UI.jsx";
 import { FOLDER_TYPES } from "../data/vault.js";
 import { CONTACT } from "../config.js";
 
+function isRecentlyUpdated(dateStr) {
+  if (!dateStr) return false;
+  const diff = new Date() - new Date(dateStr);
+  return diff < 7 * 24 * 60 * 60 * 1000; // 7 days in ms
+}
+
 // ── Single folder button ──────────────────────────────────────────────────────
 
 function FolderButton({ label, url, accent }) {
@@ -100,6 +106,24 @@ function VaultCard({ subject }) {
       }}>
         {subject.code}
       </div>
+
+      {/* ← ADD THIS BLOCK right here */}
+      {isRecentlyUpdated(subject.updatedOn) && (
+        <div style={{
+          display: "inline-block",
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: "7px",
+          fontWeight: 600,
+          letterSpacing: "1.5px",
+          color: "#4ADE80",
+          border: "1px solid rgba(74, 222, 128, 0.3)",
+          padding: "2px 6px",
+          marginBottom: "8px",
+        }}>
+          ✦ UPDATED
+        </div>
+      )}
+
 
       <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
         {FOLDER_TYPES.map(ft => {

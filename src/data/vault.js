@@ -36,6 +36,8 @@ export const VAULT = [
     name: "Maths-II",
     branch: "ALL",
     accent: "#f5c518",
+    updatedOn: null, // ← add this line, today's date when you push
+
     folders: {
       syllabus:
         "https://drive.google.com/file/d/1qdyV_e2GjrcR-IHUpvf6JcNMxaetIVKA/view?usp=drive_link", // ← paste Drive link here
@@ -53,6 +55,7 @@ export const VAULT = [
     name: "Physics",
     branch: "AI/IT/IOT/EC/EE",
     accent: "#00d4ff",
+    updatedOn: null,
     folders: {
       syllabus:
         "https://drive.google.com/file/d/11FSJy49zAQJ0Zor8vBCcKT-Uv_5lQ5ux/view?usp=drive_link",
@@ -70,6 +73,7 @@ export const VAULT = [
     name: "Communication Skills",
     branch: "AI/IT",
     accent: "#ff6b6b",
+    updatedOn: null,
     folders: {
       syllabus:
         "https://drive.google.com/file/d/1TwqVZksEHEqVYADCQB-e3vdVUG-sd98L/view?usp=drive_link",
@@ -87,6 +91,7 @@ export const VAULT = [
     name: "I & E",
     branch: "ALL",
     accent: "#a8ff78",
+    updatedOn: null,
     folders: {
       syllabus:
         "https://drive.google.com/file/d/1SQsWKdlaBKCOBlnsTfF12flCfHWC3Dd8/view?usp=drive_link",
@@ -103,6 +108,7 @@ export const VAULT = [
     name: "OOP / C++",
     branch: "ALL",
     accent: "#ff9500",
+    updatedOn: "2026-04-18",
     folders: {
       syllabus: "",
       notes:
@@ -119,6 +125,7 @@ export const VAULT = [
     name: "BEEE",
     branch: "AI/IT/IOT",
     accent: "#c0c0c0",
+    updatedOn: "2026-04-19",
     folders: {
       syllabus: "",
       notes:
@@ -135,6 +142,7 @@ export const VAULT = [
     name: "ITK",
     branch: "AI/IT/IOT/EC/EE",
     accent: "#70e000",
+    updatedOn: null,
     folders: {
       syllabus:
         "https://drive.google.com/file/d/1NCGKS7haPx_9imhAfDNxIxYZD7WCDjK9/view?usp=drive_link",
