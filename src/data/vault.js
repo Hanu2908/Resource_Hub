@@ -108,15 +108,16 @@ export const VAULT = [
     name: "OOP / C++",
     branch: "ALL",
     accent: "#ff9500",
-    updatedOn: "2026-04-18",
+    updatedOn: "2026-04-20",
     folders: {
-      syllabus: "",
+      syllabus:
+        "https://drive.google.com/file/d/1oMcZULribNrhMRbBj_Rzx_Qd-L_xxrOF/view?usp=drive_link",
       notes:
         "https://drive.google.com/drive/folders/1qWj6cloqtWFRHkkdOSwCGu3PLSj9Bst-?usp=drive_link",
       pyqs: "",
       practice:
         "https://drive.google.com/drive/folders/1GLTJ8vVav108dP9_sxqK6g98tObFeR0B?usp=drive_link",
-      lab: "",
+      lab: "https://drive.google.com/drive/folders/17S4pPwx8q3mGdVr1pnuQ1eOvGxY466Sy?usp=drive_link",
     },
   },
   {
@@ -125,7 +126,7 @@ export const VAULT = [
     name: "BEEE",
     branch: "AI/IT/IOT",
     accent: "#c0c0c0",
-    updatedOn: "2026-04-19",
+    updatedOn: null,
     folders: {
       syllabus: "",
       notes:
