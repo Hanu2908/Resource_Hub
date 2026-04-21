@@ -199,3 +199,44 @@ html, body {
   /* Allow long strings to wrap instead of overflowing */
   word-break: break-word;
 }
+
+/* ── MOBILE FIXES (≤ 480px) ── */
+@media (max-width: 480px) {
+
+  /* Branch filter — bigger tap targets */
+  .branch-btn {
+    font-size: 11px;
+    padding: 8px 14px;
+    min-height: 40px;
+  }
+
+  /* Tab nav — bigger tap targets */
+  .tab-btn {
+    font-size: 11px;
+    padding: 12px 4px;
+    min-height: 44px;
+  }
+
+  /* Schedule rows — more breathing room */
+  .exam-row {
+    padding: 13px 0;
+    gap: 12px;
+  }
+
+  /* Footer notes — readable */
+  .footer-note {
+    font-size: 11px;
+    line-height: 1.9;
+  }
+
+  /* Vault grid — always single column on mobile */
+  .vault-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Notice cards */
+  .notice-card {
+    padding: 14px;
+  }
+}
