@@ -1,11 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// VaultTab — read-only resource cards for classmates.
-//
-// HOW TO ADD/UPDATE A DRIVE LINK:
-//   Open src/data/vault.js, find the subject, paste the link, git push.
-//   Vercel redeploys in ~90 seconds. No in-app editing — by design.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { SectionLabel, FooterNote } from "./UI.jsx";
 import { FOLDER_TYPES } from "../data/vault.js";
 import { CONTACT } from "../config.js";
@@ -13,10 +5,8 @@ import { CONTACT } from "../config.js";
 function isRecentlyUpdated(dateStr) {
   if (!dateStr) return false;
   const diff = new Date() - new Date(dateStr);
-  return diff < 7 * 24 * 60 * 60 * 1000; // 7 days in ms
+  return diff < 5 * 24 * 60 * 60 * 1000;
 }
-
-// ── Single folder button ──────────────────────────────────────────────────────
 
 function FolderButton({ label, url, accent }) {
   const hasLink = !!url;
@@ -28,16 +18,18 @@ function FolderButton({ label, url, accent }) {
         target="_blank"
         rel="noopener noreferrer"
         style={{
-          display: "block",
+          display: "flex",
+          alignItems: "center",
           fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "8px",
+          fontSize: "12px",
           color: "var(--text-secondary)",
           background: "var(--bg-card)",
           border: "1px solid var(--border-faint)",
-          padding: "5px 8px",
+          padding: "10px 12px",
           textDecoration: "none",
           transition: "all 0.12s",
           cursor: "pointer",
+          minHeight: "44px",
         }}
         onMouseEnter={e => {
           e.currentTarget.style.borderColor = accent;
@@ -53,83 +45,88 @@ function FolderButton({ label, url, accent }) {
     );
   }
 
-  // No link yet — show a disabled "Coming Soon" state
   return (
     <div style={{
       fontFamily: "'IBM Plex Mono', monospace",
-      fontSize: "8px",
+      fontSize: "12px",
       color: "var(--border-strong)",
       background: "transparent",
       border: "1px dashed var(--border-faint)",
-      padding: "5px 8px",
+      padding: "10px 12px",
+      minHeight: "44px",
+      display: "flex",
+      alignItems: "center",
       cursor: "default",
-      letterSpacing: "0.5px",
     }}>
-      {label} - Adding Soon
+      {label} — Coming Soon
     </div>
   );
 }
-
-// ── Single subject card ───────────────────────────────────────────────────────
 
 function VaultCard({ subject }) {
   return (
     <div style={{
       border: `1.5px solid ${subject.accent}22`,
-      padding: "11px 10px 10px",
+      padding: "14px 12px",
     }}>
-      <div style={{
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "8px",
-        color: `${subject.accent}55`,
-        marginBottom: "5px",
-      }}>
-        {subject.id}_
-      </div>
 
+      {/* Header row */}
       <div style={{
-        fontFamily: "'Bebas Neue', cursive",
-        fontSize: "19px",
-        letterSpacing: "1px",
-        color: subject.accent,
-        lineHeight: "1.05",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        marginBottom: "6px",
       }}>
-        {subject.name}
-      </div>
-
-      <div style={{
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "8px",
-        color: "var(--border-mid)",
-        marginTop: "4px",
-        marginBottom: "10px",
-      }}>
-        {subject.code}
-      </div>
-
-      {/* ← ADD THIS BLOCK right here */}
-      {isRecentlyUpdated(subject.updatedOn) && (
-        <div style={{
-          display: "inline-block",
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "7px",
-          fontWeight: 600,
-          letterSpacing: "1.5px",
-          color: "#4ADE80",
-          border: "1px solid rgba(74, 222, 128, 0.3)",
-          padding: "2px 6px",
-          marginBottom: "8px",
-        }}>
-          ✦ UPDATED
+        <div>
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: "10px",
+            color: `${subject.accent}55`,
+            marginBottom: "3px",
+          }}>
+            {subject.id}_
+          </div>
+          <div style={{
+            fontFamily: "'Bebas Neue', cursive",
+            fontSize: "22px",
+            letterSpacing: "1px",
+            color: subject.accent,
+            lineHeight: 1.05,
+          }}>
+            {subject.name}
+          </div>
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: "11px",
+            color: "var(--border-mid)",
+            marginTop: "3px",
+          }}>
+            {subject.code}
+          </div>
         </div>
-      )}
 
+        {/* UPDATED pill — top right of card */}
+        {isRecentlyUpdated(subject.updatedOn) && (
+          <div style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: "9px",
+            fontWeight: 600,
+            letterSpacing: "1.5px",
+            color: "var(--status-live)",
+            border: "1px solid rgba(74,222,128,0.3)",
+            padding: "3px 7px",
+            whiteSpace: "nowrap",
+            alignSelf: "flex-start",
+          }}>
+            ✦ UPDATED
+          </div>
+        )}
+      </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+      {/* Folder buttons */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginTop: "10px" }}>
         {FOLDER_TYPES.map(ft => {
-          // Key doesn't exist on this subject → hide entirely
           if (!(ft.key in subject.folders)) return null;
-
           return (
             <FolderButton
               key={ft.key}
@@ -144,10 +141,9 @@ function VaultCard({ subject }) {
   );
 }
 
-// ── "File Missing?" contact card ──────────────────────────────────────────────
-
 function ContactCard() {
-  const hasWhatsApp = CONTACT.WHATSAPP_LINK && !CONTACT.WHATSAPP_LINK.includes("XXXXXXXXXX");
+  const hasWhatsApp = CONTACT.WHATSAPP_LINK &&
+    !CONTACT.WHATSAPP_LINK.includes("XXXXXXXXXX");
   const hasGroup = !!CONTACT.GROUP_LINK;
 
   return (
@@ -157,16 +153,16 @@ function ContactCard() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: "16px 10px",
-      gap: "10px",
+      padding: "24px 16px",
+      gap: "12px",
     }}>
       <div style={{
         fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "8px",
-        color: "var(--border-strong)",
+        fontSize: "12px",
+        color: "var(--text-secondary)",
         letterSpacing: "2px",
         textAlign: "center",
-        lineHeight: 1.6,
+        lineHeight: 1.8,
         textTransform: "uppercase",
       }}>
         File Missing<br />or Broken Link?
@@ -178,22 +174,28 @@ function ContactCard() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: "block",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             width: "100%",
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "9px",
+            fontSize: "13px",
             fontWeight: 600,
             letterSpacing: "1px",
-            padding: "7px 10px",
+            padding: "12px 10px",
+            minHeight: "44px",
             border: "1.5px solid #25d366",
             background: "rgba(37,211,102,0.05)",
             color: "#25d366",
-            textAlign: "center",
             textDecoration: "none",
             transition: "all 0.12s",
           }}
-          onMouseEnter={e => e.currentTarget.style.background = "rgba(37,211,102,0.12)"}
-          onMouseLeave={e => e.currentTarget.style.background = "rgba(37,211,102,0.05)"}
+          onMouseEnter={e =>
+            e.currentTarget.style.background = "rgba(37,211,102,0.12)"
+          }
+          onMouseLeave={e =>
+            e.currentTarget.style.background = "rgba(37,211,102,0.05)"
+          }
         >
           DM {CONTACT.CR_NAME} ↗
         </a>
@@ -205,27 +207,21 @@ function ContactCard() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: "block",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             width: "100%",
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "9px",
+            fontSize: "12px",
             fontWeight: 600,
             letterSpacing: "1px",
-            padding: "7px 10px",
+            padding: "12px 10px",
+            minHeight: "44px",
             border: "1.5px solid var(--border-mid)",
             background: "transparent",
             color: "var(--text-secondary)",
-            textAlign: "center",
             textDecoration: "none",
             transition: "all 0.12s",
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.borderColor = "var(--border-strong)";
-            e.currentTarget.style.color = "var(--text-primary)";
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.borderColor = "var(--border-mid)";
-            e.currentTarget.style.color = "var(--text-secondary)";
           }}
         >
           Join Class Group ↗
@@ -235,7 +231,7 @@ function ContactCard() {
       {!hasWhatsApp && !hasGroup && (
         <div style={{
           fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "9px",
+          fontSize: "12px",
           color: "var(--border-mid)",
           textAlign: "center",
         }}>
@@ -246,12 +242,12 @@ function ContactCard() {
   );
 }
 
-// ── Tab export ────────────────────────────────────────────────────────────────
-
 export default function VaultTab({ subjects }) {
   return (
     <div>
-      <SectionLabel>Resource Vault — {subjects.length} Subjects · View Only</SectionLabel>
+      <SectionLabel>
+        Resource Vault — {subjects.length} Subjects · View Only
+      </SectionLabel>
 
       <div className="vault-grid">
         {subjects.map(s => <VaultCard key={s.id} subject={s} />)}
@@ -259,7 +255,7 @@ export default function VaultTab({ subjects }) {
       </div>
 
       <FooterNote>
-        LINKS OPEN IN GOOGLE DRIVE · VIEW ONLY · MAINTAINED BY CR
+        LINKS OPEN IN GOOGLE DRIVE · MAINTAINED BY Himanshu Saini
       </FooterNote>
     </div>
   );
