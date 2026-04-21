@@ -16,6 +16,7 @@ export const EXAMS = [
     day: "MON",
     ddmm: "27 APR",
     branch: "ALL",
+    hall: "",
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const EXAMS = [
     day: "WED",
     ddmm: "29 APR",
     branch: "AI/IT/IOT/EC/EE",
+    hall: "",
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ export const EXAMS = [
     day: "WED",
     ddmm: "29 APR",
     branch: "CSE/DS/ME/CE",
+    hall: "",
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export const EXAMS = [
     day: "FRI",
     ddmm: "1 MAY",
     branch: "AI/IT/IOT/EC/EE",
+    hall: "",
   },
   {
     id: 5,
@@ -56,6 +60,7 @@ export const EXAMS = [
     day: "FRI",
     ddmm: "1 MAY",
     branch: "CSE/DS/ME/CE",
+    hall: "",
   },
   {
     id: 6,
@@ -66,6 +71,7 @@ export const EXAMS = [
     day: "MON",
     ddmm: "4 MAY",
     branch: "ALL",
+    hall: "",
   },
   {
     id: 7,
@@ -76,6 +82,7 @@ export const EXAMS = [
     day: "WED",
     ddmm: "6 MAY",
     branch: "ALL",
+    hall: "",
   },
   {
     id: 8,
@@ -86,6 +93,7 @@ export const EXAMS = [
     day: "FRI",
     ddmm: "8 MAY",
     branch: "AI/IT/IOT",
+    hall: "",
   },
   {
     id: 9,
@@ -96,6 +104,7 @@ export const EXAMS = [
     day: "FRI",
     ddmm: "8 MAY",
     branch: "ME/EC/EE",
+    hall: "",
   },
   {
     id: 10,
@@ -106,6 +115,7 @@ export const EXAMS = [
     day: "FRI",
     ddmm: "8 MAY",
     branch: "CSE/DS/CE",
+    hall: "",
   },
   {
     id: 11,
@@ -117,6 +127,7 @@ export const EXAMS = [
     ddmm: "11 MAY",
     branch: "CSE/DS/ME/CE",
     audit: true,
+    hall: "",
   },
   {
     id: 12,
@@ -128,5 +139,6 @@ export const EXAMS = [
     ddmm: "11 MAY",
     branch: "AI/IT/IOT/EC/EE",
     audit: true,
+    hall: "",
   },
 ];

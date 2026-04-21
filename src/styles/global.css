@@ -100,8 +100,11 @@ html, body {
   transition: opacity 0.2s;
 }
 .exam-row:last-child { border: none; }
-.exam-row.done       { opacity: 0.3; }
-
+.exam-row.done { opacity: 0.9; }
+.exam-row.done .exam-subject-name { 
+  text-decoration: line-through;
+  color: var(--border-strong);
+}
 /* ── VAULT GRID ── */
 /* Mobile first: single column so cards have full width */
 .vault-grid {
@@ -190,7 +193,7 @@ html, body {
 /* ── FOOTER NOTE — wraps gracefully on narrow screens ── */
 .footer-note {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 8px;
+  font-size: 11px;
   color: var(--border-mid);
   text-align: center;
   letter-spacing: 1px;
