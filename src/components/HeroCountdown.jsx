@@ -2,7 +2,7 @@
 // Hero countdown banner — shows next upcoming exam and live timer
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function HeroCountdown({ exam, cd }) {
+export default function HeroCountdown({ exam, cd, onOpenVault }) {
   if (!exam || !cd || cd.done) return null;
 
   return (
@@ -81,20 +81,29 @@ export default function HeroCountdown({ exam, cd }) {
           </div>
         ))}
       </div>
+      {/* 2. REPLACE YOUR BUTTON WITH THIS BULLETPROOF VERSION
+      <div
+        onClick={() => {
+          console.log("1. Button physically clicked inside HeroCountdown");
+          if (onOpenVault) {
+            onOpenVault(exam.code);
+          }
+        }}
+        style={{
+          cursor: "pointer",
+          fontSize: "15px",
+          fontWeight: 600,
+          color: "var(--text-primary)",
+          fontFamily: "'IBM Plex Mono', monospace",
+          marginTop: "10px",
+          letterSpacing: "1px",
+          position: "relative", // Ensures it sits above any background gradients
+          zIndex: 10,           // Forces the button to the front layer
+          padding: "5px 0"      // Makes the clickable area slightly larger for thumbs
+        }}
+      >
+        VIEW RESOURCES ↗
+      </div> */}
     </div>
   );
 }
-
-
-// HeroCountdown.jsx — add at the bottom of the component
-// Pass subjectId from App.jsx based on exam.code matching vault id
-<div
-  onClick={() => onOpenVault(exam.code)}  // callback prop to App
-  style={{
-    cursor: "pointer", fontSize: "12px", color: "var(--accent)",
-    fontFamily: "'IBM Plex Mono', monospace", marginTop: "10px",
-    letterSpacing: "1px"
-  }}
->
-  VIEW RESOURCES ↗
-</div>

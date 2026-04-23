@@ -1,14 +1,5 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// App.jsx — orchestrates layout and routing between tabs.
-// This file should NOT need editing for most changes.
-// → To change colours/title/tabs:  src/config.js
-// → To change exam dates:          src/data/exams.js
-// → To change Drive links:         src/data/vault.js
-// → To change templates:           src/data/templates.js
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { useState, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react"; // ← fixed: /react not /next
+import { Analytics } from "@vercel/analytics/react";
 import { APP_TITLE, APP_SUBTITLE, TABS, BRANCHES, DEFAULT_BRANCH, THEME } from "./config.js";
 import { EXAMS } from "./data/exams.js";
 import { VAULT } from "./data/vault.js";
@@ -17,11 +8,7 @@ import ScheduleTab from "./components/ScheduleTab.jsx";
 import VaultTab from "./components/VaultTab.jsx";
 import NoticesTab from "./components/NoticesTab.jsx";
 import TemplatesTab from "./components/TemplatesTab.jsx";
-
 import PYQSection from './components/PYQSection.jsx';
-
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function getCountdown(dateStr) {
   const diff = new Date(dateStr) - new Date();
@@ -38,8 +25,6 @@ function branchMatch(exam, code) {
   if (code === "ALL" || exam.branch === "ALL") return true;
   return exam.branch.includes(code);
 }
-
-// ── Apply THEME as CSS variables on <html> ────────────────────────────────────
 
 function applyTheme(theme) {
   const root = document.documentElement;
@@ -62,44 +47,34 @@ function applyTheme(theme) {
   root.style.setProperty("--status-audit", theme.statusAudit);
 }
 
-
-// App.jsx (add above export default function App)
-
 function ShareButton() {
-  const canShare = !!navigator.share;
-  if (!canShare) return null;
-
-  const handleShare = () => {
-    navigator.share({
-      title: "Resource Hub — SKIT P2",
-      text: "End-sem notes, PYQs and exam schedule",
-      url: window.location.href,
-    }).catch((error) => {
-      // It is normal for users to cancel the share sheet.
-      console.log("Share canceled:", error);
-    });
-  };
-
+  if (!navigator.share) return null;
   return (
     <button
-      onClick={handleShare}
+      onClick={() =>
+        navigator.share({
+          title: "Resource Hub — SKIT P2",
+          text: "End-sem notes, PYQs and exam schedule",
+          url: window.location.href,
+        }).catch(() => { })
+      }
       style={{
         background: "none",
-        border: "none",
+        border: "1px solid var(--border-mid)",
         cursor: "pointer",
         color: "var(--text-primary)",
-        fontFamily: "'Bebas Neue', cursive",
-
-        fontSize: "20px",
-        padding: "4px",
-        marginLeft: "120px" // Added a tiny bit of margin
+        fontFamily: "'IBM Plex Mono', monospace",
+        fontSize: "11px",
+        fontWeight: "400",
+        letterSpacing: "1px",
+        padding: "3px 8px",
+        minHeight: "28px",
       }}
     >
-      Share⬆️
+      SHARE ↑
     </button>
   );
 }
-// ── Component ─────────────────────────────────────────────────────────────────
 
 const ENABLED_TABS = TABS.filter(t => t.enabled);
 
@@ -122,9 +97,7 @@ export default function App() {
 
   return (
     <>
-      {/* Vercel Analytics — renders nothing visible, just fires page events */}
       <Analytics />
-
 
       <div style={{
         maxWidth: "480px", margin: "0 auto",
@@ -138,6 +111,8 @@ export default function App() {
           padding: "14px 16px 10px",
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+
+            {/* Left */}
             <div>
               <div style={{
                 fontFamily: "'Bebas Neue', cursive",
@@ -154,30 +129,40 @@ export default function App() {
                 {APP_SUBTITLE}
               </div>
             </div>
-            <div style={{ textAlign: "right" }}>
-              <div style={{
-                display: "flex", alignItems: "center", gap: "5px",
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "9px", letterSpacing: "2px", color: "var(--status-live)",
-              }}>
-                <span
-                  className="live-dot"
-                  style={{
-                    width: "6px", height: "6px",
-                    background: "var(--status-live)",
-                    borderRadius: "50%", display: "inline-block",
-                  }}
-                />
-                LIVE
+
+            {/* Right — SHARE + LIVE on row 1, date on row 2 */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "5px" }}>
+
+              {/* Row 1 */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <ShareButton />
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "5px",
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "9px", letterSpacing: "2px", color: "var(--status-live)",
+                }}>
+                  <span
+                    className="live-dot"
+                    style={{
+                      width: "6px", height: "6px",
+                      background: "var(--status-live)",
+                      borderRadius: "50%", display: "inline-block",
+                    }}
+                  />
+                  LIVE
+                </div>
               </div>
 
+              {/* Row 2 — date sits here, NOT inside the row above */}
               <div style={{
                 fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "9px", color: "var(--border-strong)", marginTop: "3px",
+                fontSize: "9px", color: "var(--border-strong)",
               }}>
                 {new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
               </div>
+
             </div>
+
           </div>
         </div>
 
@@ -197,24 +182,27 @@ export default function App() {
               {b.label}
             </button>
           ))}
-          {/* ── PLACE THE BUTTON HERE ── */}
-          <ShareButton />
         </div>
 
         {/* ── HERO COUNTDOWN ── */}
-        <HeroCountdown exam={nextEntry?.exam} cd={nextEntry?.cd} />
-
+        <HeroCountdown
+          exam={nextEntry?.exam}
+          cd={nextEntry?.cd}
+          onOpenVault={() => {
+            setTab("vault");
+            window.scrollTo(0, 0);
+          }}
+        />
 
         <PYQSection />
 
-        {/* ── FIXED: Conditional rendering added back for ScheduleTab ── */}
         {tab === "schedule" && <ScheduleTab exams={filteredExams} />}
         {tab === "vault" && <VaultTab subjects={VAULT} />}
         {tab === "notices" && <NoticesTab />}
         {tab === "templates" && <TemplatesTab />}
       </div>
 
-      {/* ── FIXED: Restored the deleted Bottom Navigation Bar ── */}
+      {/* ── BOTTOM NAV ── */}
       <div style={{
         position: "fixed", bottom: 0, left: 0, right: 0,
         background: "var(--bg-page)", borderTop: "2px solid var(--accent)",
@@ -231,7 +219,7 @@ export default function App() {
               color: tab === t.id ? "var(--accent)" : "var(--text-dim)",
               letterSpacing: "1px", textTransform: "uppercase",
               borderBottom: tab === t.id ? "2px solid var(--accent)" : "none",
-              paddingBottom: "4px"
+              paddingBottom: "4px",
             }}
           >
             {t.label}
@@ -241,13 +229,3 @@ export default function App() {
     </>
   );
 }
-
-//         <ScheduleTab exams={filteredExams} />
-//           {tab === "vault" && <VaultTab subjects={VAULT} />}
-//           {tab === "notices" && <NoticesTab />}
-//           {tab === "templates" && <TemplatesTab />}
-//       </div>
-
-//     </>
-//   );
-// }

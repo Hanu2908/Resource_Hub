@@ -83,7 +83,7 @@ export const THEME = {
 // Days remaining → colour shown on the schedule screen.
 
 export const CD_THRESHOLDS = [
-  { maxDays: 0, color: "#F43F5E" }, // today    → rose
+  { maxDays: 1, color: "#F43F5E" }, // today    → rose
   { maxDays: 3, color: "#FB923C" }, // ≤ 3 days → orange
   { maxDays: 7, color: "#FBBF24" }, // ≤ 7 days → amber
   { maxDays: Infinity, color: "#4A4A6A" }, // further  → dim
