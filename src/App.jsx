@@ -204,14 +204,50 @@ export default function App() {
         {/* ── HERO COUNTDOWN ── */}
         <HeroCountdown exam={nextEntry?.exam} cd={nextEntry?.cd} />
 
+
         <PYQSection />
 
-        <ScheduleTab exams={filteredExams} />
-          {tab === "vault" && <VaultTab subjects={VAULT} />}
-          {tab === "notices" && <NoticesTab />}
-          {tab === "templates" && <TemplatesTab />}
+        {/* ── FIXED: Conditional rendering added back for ScheduleTab ── */}
+        {tab === "schedule" && <ScheduleTab exams={filteredExams} />}
+        {tab === "vault" && <VaultTab subjects={VAULT} />}
+        {tab === "notices" && <NoticesTab />}
+        {tab === "templates" && <TemplatesTab />}
       </div>
 
+      {/* ── FIXED: Restored the deleted Bottom Navigation Bar ── */}
+      <div style={{
+        position: "fixed", bottom: 0, left: 0, right: 0,
+        background: "var(--bg-page)", borderTop: "2px solid var(--accent)",
+        display: "flex", justifyContent: "space-around", padding: "12px 16px 24px",
+        zIndex: 100, maxWidth: "480px", margin: "0 auto",
+      }}>
+        {ENABLED_TABS.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px",
+              color: tab === t.id ? "var(--accent)" : "var(--text-dim)",
+              letterSpacing: "1px", textTransform: "uppercase",
+              borderBottom: tab === t.id ? "2px solid var(--accent)" : "none",
+              paddingBottom: "4px"
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
     </>
   );
 }
+
+//         <ScheduleTab exams={filteredExams} />
+//           {tab === "vault" && <VaultTab subjects={VAULT} />}
+//           {tab === "notices" && <NoticesTab />}
+//           {tab === "templates" && <TemplatesTab />}
+//       </div>
+
+//     </>
+//   );
+// }
