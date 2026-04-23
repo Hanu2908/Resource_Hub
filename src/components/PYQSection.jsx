@@ -50,7 +50,7 @@ export default function PYQSection() {
       <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem" }}>
         End-term question papers — all subjects combined
       </p>
-
+<a
       
         href={MASTER_FOLDER_URL}
         target="_blank"
@@ -92,7 +92,7 @@ export default function PYQSection() {
           </p>
 
           {group.years.map((paper) => (
-            
+<a            
               key={paper.year}
               href={paper.url}
               target="_blank"
