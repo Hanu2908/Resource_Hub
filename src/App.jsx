@@ -18,7 +18,7 @@ import VaultTab from "./components/VaultTab.jsx";
 import NoticesTab from "./components/NoticesTab.jsx";
 import TemplatesTab from "./components/TemplatesTab.jsx";
 
-// ── Helpers ────import PYQSection from './components/PYQSection.jsx';
+import PYQSection from './components/PYQSection.jsx';
 
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
