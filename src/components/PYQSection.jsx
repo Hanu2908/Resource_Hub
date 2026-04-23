@@ -1,165 +1,200 @@
 // PYQSection.jsx
-// Drop this component into your homepage JSX where you want the PYQ section to appear.
-// Usage: import PYQSection from './PYQSection'; then add <PYQSection /> in your JSX.
+
+const MASTER_FOLDER_URL =
+  "https://drive.google.com/drive/folders/1nIZSIEz39BtJq67SJtq4wVR7-qdCCdPv";
 
 const papers = [
   {
-    year: "2025",
-    label: "End-Term 2025",
-    tag: "Latest",
-        url: "https://drive.google.com/file/d/1c7ftZiYwfONKj6A1-fzmOpGvp_H5IT45/view",
+    sem: "Semester II",  latest: true,
+    years: [
+      { year: "2025", url: "https://drive.google.com/file/d/1c7ftZiYwfONKj6A1-fzmOpGvp_H5IT45/view", latest: true },
+      { year: "2024", url: "https://drive.google.com/file/d/166eiJJ6V9yHRblj63jCP0OtL8PwScaFB/view" },
+      { year: "2023", url: "https://drive.google.com/file/d/1yqfWLdrd338SLxqf-l-0P7LAigSokPf3/view" },
+    ],
   },
   {
-    year: "2024",
-    label: "End-Term 2024",
-    tag: null,
-        url: "https://drive.google.com/file/d/166eiJJ6V9yHRblj63jCP0OtL8PwScaFB/view",
-  },
-  {
-    year: "2023",
-    label: "End-Term 2023",
-    tag: null,
-        url: "https://drive.google.com/file/d/1yqfWLdrd338SLxqf-l-0P7LAigSokPf3/view",
+    sem: "Semester I",
+    years: [
+      { year: "2025", url: "https://drive.google.com/file/d/1iVXGW20dPxZLkqbWYWui8U7D9wcVZ46g/view" },
+      { year: "2024", url: "https://drive.google.com/file/d/1XbWoO7-Fk0Evgo0Pyo6gssyrlPPlGvpS/view" },
+      { year: "2023", url: "https://drive.google.com/file/d/1TNMqMQcQPsGm4WD13mVuuMAfGkCT5ber/view" },
+    ],
   },
 ];
 
-export default function PYQSection() {
-  return (
-    <section style={styles.section}>
-      <div style={styles.heading}>
-        <h2 style={styles.title}>Previous Year Papers</h2>
-        <p style={styles.subtitle}>2-End-term question papers — all subjects combined</p>
-      </div>
-
-      <div style={styles.grid}>
-        {papers.map((paper) => (
-          <a
-            key={paper.year}
-            href={paper.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={styles.card}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(0,0,0,0.25)";
-              e.currentTarget.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            {/* PDF icon */}
-            <div style={styles.iconWrap}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="9" y1="13" x2="15" y2="13"/>
-                <line x1="9" y1="17" x2="15" y2="17"/>
-                <polyline points="9 9 10 9"/>
-              </svg>
-            </div>
-
-            <div style={styles.cardBody}>
-              <div style={styles.cardTop}>
-                <span style={styles.year}>{paper.label}</span>
-                {paper.tag && <span style={styles.badge}>{paper.tag}</span>}
-              </div>
-              <span style={styles.openLabel}>
-                Open PDF
-                <svg style={{ marginLeft: 4 }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 const styles = {
   section: {
-    padding: "2rem 0",
-    maxWidth: "720px",
-    margin: "0 auto",
-    fontFamily: "inherit",
+    padding: "1.5rem 0",
   },
   heading: {
-    marginBottom: "1.25rem",
-  },
-  title: {
-    fontSize: "1.25rem",
-    fontWeight: "600",
-    color: "inherit",
-    margin: 0,
+    fontSize: "24px",
+    fontWeight: 700,
+    color: "#ffffff",
+    marginBottom: "4px",
   },
   subtitle: {
-    fontSize: "0.85rem",
-    color: "gray",
-    marginTop: "0.25rem",
-    marginBottom: 0,
+    fontSize: "14px",
+    color: "rgba(255,255,255,0.45)",
+    marginBottom: "1.25rem",
   },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-    gap: "12px",
+  masterBtn: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "14px 16px",
+    marginBottom: "1.5rem",
+    borderRadius: "10px",
+    border: "1px solid rgba(124, 58, 237, 0.5)",
+    background: "rgba(124, 58, 237, 0.08)",
+    textDecoration: "none",
+    cursor: "pointer",
+  },
+  masterBtnText: {
+    fontSize: "14px",
+    fontWeight: 600,
+    color: "#a78bfa",
+    letterSpacing: "0.03em",
+  },
+  masterBtnHint: {
+    fontSize: "12px",
+    color: "rgba(167, 139, 250, 0.5)",
+  },
+  semLabel: {
+    fontSize: "11px",
+    fontWeight: 600,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: "rgba(255,255,255,0.35)",
+    marginBottom: "8px",
+  },
+  group: {
+    marginBottom: "1.25rem",
   },
   card: {
     display: "flex",
     alignItems: "center",
-    gap: "12px",
+    justifyContent: "space-between",
     padding: "14px 16px",
+    marginBottom: "8px",
     borderRadius: "10px",
-    border: "1px solid rgba(0,0,0,0.1)",
-    backgroundColor: "#fff",
+    border: "1px solid rgba(255,255,255,0.08)",
+    background: "rgba(255,255,255,0.03)",
     textDecoration: "none",
-    color: "inherit",
-    transition: "border-color 0.15s ease, transform 0.15s ease",
-    cursor: "pointer",
+    transition: "border-color 0.15s, background 0.15s",
   },
-  iconWrap: {
-    flexShrink: 0,
-    width: "38px",
-    height: "38px",
+  cardLeft: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+  },
+  iconBox: {
+    width: "36px",
+    height: "36px",
     borderRadius: "8px",
-    backgroundColor: "#f4f4f4",
+    background: "rgba(255,255,255,0.06)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "#555",
+    flexShrink: 0,
   },
-  cardBody: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "3px",
-    minWidth: 0,
+  cardTitle: {
+    fontSize: "15px",
+    fontWeight: 600,
+    color: "#a78bfa",
   },
-  cardTop: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
+  cardSub: {
+    fontSize: "12px",
+    color: "rgba(255,255,255,0.35)",
+    marginTop: "2px",
   },
-  year: {
-    fontSize: "0.9rem",
-    fontWeight: "600",
-    whiteSpace: "nowrap",
-  },
-  badge: {
-    fontSize: "0.7rem",
-    fontWeight: "600",
-    backgroundColor: "#e8f5e9",
-    color: "#2e7d32",
-    padding: "1px 7px",
+  latestBadge: {
+    fontSize: "11px",
+    fontWeight: 600,
+    padding: "2px 8px",
     borderRadius: "20px",
-    letterSpacing: "0.02em",
+    background: "rgba(34, 197, 94, 0.15)",
+    color: "#4ade80",
+    marginLeft: "8px",
   },
-  openLabel: {
-    fontSize: "0.75rem",
-    color: "gray",
-    display: "flex",
-    alignItems: "center",
+  openLink: {
+    fontSize: "12px",
+    color: "rgba(255,255,255,0.3)",
+    flexShrink: 0,
   },
 };
+
+export default function PYQSection() {
+  return (
+    <section style={styles.section}>
+      <h2 style={styles.heading}>Previous Year Papers</h2>
+      <p style={styles.subtitle}>End-term question papers — all subjects combined</p>
+
+      {/* Master folder link */}
+      
+        href={MASTER_FOLDER_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={styles.masterBtn}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "rgba(124, 58, 237, 0.14)";
+          e.currentTarget.style.borderColor = "rgba(124, 58, 237, 0.8)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "rgba(124, 58, 237, 0.08)";
+          e.currentTarget.style.borderColor = "rgba(124, 58, 237, 0.5)";
+        }}
+      >
+        <span style={styles.masterBtnText}>Open All Papers in Drive</span>
+        <span style={styles.masterBtnHint}>View folder ↗</span>
+      </a>
+
+      {/* Per-semester groups */}
+      {papers.map((group) => (
+        <div key={group.sem} style={styles.group}>
+          <p style={styles.semLabel}>{group.sem}</p>
+
+          {group.years.map((paper) => (
+            
+              key={paper.year}
+              href={paper.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.card}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+              }}
+            >
+              <div style={styles.cardLeft}>
+                <div style={styles.iconBox}>
+                  {/* File icon */}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <span style={styles.cardTitle}>End-Term {paper.year}</span>
+                    {paper.latest && (
+                      <span style={styles.latestBadge}>Latest</span>
+                    )}
+                  </div>
+                  <div style={styles.cardSub}>Open PDF</div>
+                </div>
+              </div>
+              <span style={styles.openLink}>↗</span>
+            </a>
+          ))}
+        </div>
+      ))}
+    </section>
+  );
+}
