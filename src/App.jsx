@@ -17,7 +17,8 @@ import ScheduleTab from "./components/ScheduleTab.jsx";
 import VaultTab from "./components/VaultTab.jsx";
 import NoticesTab from "./components/NoticesTab.jsx";
 import TemplatesTab from "./components/TemplatesTab.jsx";
-import PYQSection from './components/PYQSection.jsx';
+
+// ── Helpers ────import PYQSection from './components/PYQSection.jsx';
 
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -205,29 +206,12 @@ export default function App() {
 
         <PYQSection />
 
-
-        {/* ── TAB NAV ── */}
-        <div style={{ display: "flex", borderBottom: "1.5px solid var(--border-faint)", marginTop: "10px" }}>
-          {ENABLED_TABS.map(t => (
-            <button
-              key={t.id}
-              className={`tab-btn${tab === t.id ? " active" : ""}`}
-              onClick={() => setTab(t.id)}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        {/* ── TAB CONTENT ── */}
-        <div style={{ padding: "14px 16px" }} className="fade-in" key={tab}>
-          {tab === "schedule" && <ScheduleTab exams={filteredExams} />}
+        <ScheduleTab exams={filteredExams} />
           {tab === "vault" && <VaultTab subjects={VAULT} />}
           {tab === "notices" && <NoticesTab />}
           {tab === "templates" && <TemplatesTab />}
-        </div>
-
       </div>
+
     </>
   );
 }

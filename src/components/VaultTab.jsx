@@ -58,7 +58,7 @@ function FolderButton({ label, url, accent }) {
       alignItems: "center",
       cursor: "default",
     }}>
-      {label} — Coming Soon
+      {label} — Adding Soon
     </div>
   );
 }
