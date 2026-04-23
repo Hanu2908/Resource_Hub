@@ -126,7 +126,7 @@ export const VAULT = [
     name: "BEEE",
     branch: "AI/IT/IOT",
     accent: "#c0c0c0",
-    updatedOn: null,
+    updatedOn: "2026-04-23",
     folders: {
       syllabus: "",
       notes:

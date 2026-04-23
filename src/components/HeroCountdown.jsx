@@ -84,3 +84,17 @@ export default function HeroCountdown({ exam, cd }) {
     </div>
   );
 }
+
+
+// HeroCountdown.jsx — add at the bottom of the component
+// Pass subjectId from App.jsx based on exam.code matching vault id
+<div
+  onClick={() => onOpenVault(exam.code)}  // callback prop to App
+  style={{
+    cursor: "pointer", fontSize: "12px", color: "var(--accent)",
+    fontFamily: "'IBM Plex Mono', monospace", marginTop: "10px",
+    letterSpacing: "1px"
+  }}
+>
+  VIEW RESOURCES ↗
+</div>

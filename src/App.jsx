@@ -59,6 +59,43 @@ function applyTheme(theme) {
   root.style.setProperty("--status-audit", theme.statusAudit);
 }
 
+
+// App.jsx (add above export default function App)
+
+function ShareButton() {
+  const canShare = !!navigator.share;
+  if (!canShare) return null;
+
+  const handleShare = () => {
+    navigator.share({
+      title: "Resource Hub — SKIT P2",
+      text: "End-sem notes, PYQs and exam schedule",
+      url: window.location.href,
+    }).catch((error) => {
+      // It is normal for users to cancel the share sheet.
+      console.log("Share canceled:", error);
+    });
+  };
+
+  return (
+    <button
+      onClick={handleShare}
+      style={{
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        color: "var(--text-primary)",
+        fontFamily: "'Bebas Neue', cursive",
+
+        fontSize: "20px",
+        padding: "4px",
+        marginLeft: "120px" // Added a tiny bit of margin
+      }}
+    >
+      Share⬆️
+    </button>
+  );
+}
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const ENABLED_TABS = TABS.filter(t => t.enabled);
@@ -130,6 +167,7 @@ export default function App() {
                 />
                 LIVE
               </div>
+
               <div style={{
                 fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "9px", color: "var(--border-strong)", marginTop: "3px",
@@ -156,6 +194,8 @@ export default function App() {
               {b.label}
             </button>
           ))}
+          {/* ── PLACE THE BUTTON HERE ── */}
+          <ShareButton />
         </div>
 
         {/* ── HERO COUNTDOWN ── */}

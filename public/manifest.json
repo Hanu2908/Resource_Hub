@@ -1,0 +1,17 @@
+{
+  "name": "Resource Hub",
+  "short_name": "Hub-SKIT",
+  "description": "SKIT Resource Hub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0F",
+  "theme_color": "#0A0A0F",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192*192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
