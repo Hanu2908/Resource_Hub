@@ -17,6 +17,8 @@ import ScheduleTab from "./components/ScheduleTab.jsx";
 import VaultTab from "./components/VaultTab.jsx";
 import NoticesTab from "./components/NoticesTab.jsx";
 import TemplatesTab from "./components/TemplatesTab.jsx";
+import PYQSection from './components/PYQSection';
+
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
