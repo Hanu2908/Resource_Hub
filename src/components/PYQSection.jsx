@@ -5,7 +5,7 @@ const MASTER_FOLDER_URL =
 
 const papers = [
   {
-    sem: "Semester II",  latest: true,
+    sem: "Semester II", latest: true,
     years: [
       { year: "2025", url: "https://drive.google.com/file/d/1c7ftZiYwfONKj6A1-fzmOpGvp_H5IT45/view", latest: true },
       { year: "2024", url: "https://drive.google.com/file/d/166eiJJ6V9yHRblj63jCP0OtL8PwScaFB/view" },
