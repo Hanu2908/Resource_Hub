@@ -17,6 +17,8 @@ import ScheduleTab from "./components/ScheduleTab.jsx";
 import VaultTab from "./components/VaultTab.jsx";
 import NoticesTab from "./components/NoticesTab.jsx";
 import TemplatesTab from "./components/TemplatesTab.jsx";
+import PYQSection from './components/PYQSection.jsx';
+
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -200,6 +202,9 @@ export default function App() {
 
         {/* ── HERO COUNTDOWN ── */}
         <HeroCountdown exam={nextEntry?.exam} cd={nextEntry?.cd} />
+
+        <PYQSection />
+
 
         {/* ── TAB NAV ── */}
         <div style={{ display: "flex", borderBottom: "1.5px solid var(--border-faint)", marginTop: "10px" }}>
