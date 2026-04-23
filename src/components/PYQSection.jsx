@@ -1,5 +1,4 @@
-const MASTER_FOLDER_URL =
-  "https://drive.google.com/drive/folders/1nIZSIEz39BtJq67SJtq4wVR7-qdCCdPv";
+
 
 const papers = [
   {
@@ -50,33 +49,7 @@ export default function PYQSection() {
       <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem" }}>
         End-term question papers — all subjects combined
       </p>
-<a
-      
-        href={MASTER_FOLDER_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={handleMasterEnter}
-        onMouseLeave={handleMasterLeave}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "14px 16px",
-          marginBottom: "1.5rem",
-          borderRadius: "10px",
-          border: "1px solid rgba(124,58,237,0.5)",
-          background: "rgba(124,58,237,0.08)",
-          textDecoration: "none",
-          cursor: "pointer",
-        }}
-      >
-        <span style={{ fontSize: "14px", fontWeight: 600, color: "#a78bfa", letterSpacing: "0.03em" }}>
-          Open All Papers in Drive
-        </span>
-        <span style={{ fontSize: "12px", color: "rgba(167,139,250,0.5)" }}>
-          View folder ↗
-        </span>
-      </a>
+
 
       {papers.map((group) => (
         <div key={group.sem} style={{ marginBottom: "1.25rem" }}>
