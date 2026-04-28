@@ -19,7 +19,7 @@ export default function ScheduleTab({ exams }) {
       </div>
 
       {exams.map(({ exam, cd }) => {
-        const isToday = !cd.done && cd.days === 0;
+        const isToday = !cd.done && cd.isToday;
         return (
           <div
             key={exam.id}
@@ -106,15 +106,15 @@ export default function ScheduleTab({ exams }) {
                     <div style={{
                       fontFamily: "'Bebas Neue', cursive",
                         fontSize: "24px", lineHeight: 1,
-                        color: cdAccent(cd.days),
+                        color: cdAccent(cd.calendarDays),
                       }}>
-                        {cd.days}
+                        {cd.calendarDays}
                       </div>
                       <div style={{
                         fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "10px", color: "var(--border-strong)", letterSpacing: "1px",
                   }}>
-                    DAYS
+                        {cd.calendarDays === 1 ? "DAY" : "DAYS"}
                   </div>
                 </>
               )}

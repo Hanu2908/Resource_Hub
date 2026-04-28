@@ -11,13 +11,22 @@ import TemplatesTab from "./components/TemplatesTab.jsx";
 import PYQSection from './components/PYQSection.jsx';
 
 function getCountdown(dateStr) {
-  const diff = new Date(dateStr) - new Date();
-  if (diff <= 0) return { done: true, days: 0, hours: 0, mins: 0 };
+  const target = new Date(dateStr);
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) return { done: true, days: 0, hours: 0, mins: 0, calendarDays: 0, isToday: false };
+
+  const midnightNow = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const midnightTarget = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+  const calendarDays = Math.round((midnightTarget - midnightNow) / 86400000);
+
   return {
     done:  false,
     days:  Math.floor(diff / 86400000),
     hours: Math.floor((diff % 86400000) / 3600000),
     mins:  Math.floor((diff % 3600000)  / 60000),
+    calendarDays,
+    isToday: calendarDays === 0,
   };
 }
 
