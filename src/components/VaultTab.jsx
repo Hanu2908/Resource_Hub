@@ -5,7 +5,7 @@ import { CONTACT } from "../config.js";
 function isRecentlyUpdated(dateStr) {
   if (!dateStr) return false;
   const diff = new Date() - new Date(dateStr);
-  return diff < 5 * 24 * 60 * 60 * 1000;
+  return diff >= 0 && diff < 5 * 24 * 60 * 60 * 1000;
 }
 
 function FolderButton({ label, url, accent }) {
