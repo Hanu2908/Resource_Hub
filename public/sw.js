@@ -1,4 +1,4 @@
-const CACHE = "resource-hub-v2"; // bump this on every deploy if needed
+const CACHE = "resource-hub-v3"; // bumped again to kill v2 cache
 const STATIC = ["/manifest.json"];
 
 self.addEventListener("install", (e) => {
@@ -14,15 +14,21 @@ self.addEventListener("activate", (e) => {
         Promise.all(
           keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)),
         ),
-      ),
+      )
+      .then(() => self.clients.claim())
+      .then(() =>
+        self.clients.matchAll({ type: "window", includeUncontrolled: true }),
+      )
+      .then((clients) => {
+        clients.forEach((client) => client.navigate(client.url));
+      }),
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
 
-  // Always fetch HTML fresh from network
+  // Always network-first for HTML navigation
   if (
     e.request.mode === "navigate" ||
     url.pathname === "/" ||
@@ -32,7 +38,7 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // Cache-first for everything else (JS, CSS, fonts, images)
+  // Cache-first for JS, CSS, fonts, images
   e.respondWith(
     caches.match(e.request).then(
       (cached) =>
