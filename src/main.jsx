@@ -11,6 +11,15 @@ createRoot(document.getElementById('root')).render(
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(console.error)
-  })
+    navigator.serviceWorker.register('/sw.js').catch(console.error);
+
+    // When a new SW takes control, reload once so the fresh version loads
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
+  });
 }
