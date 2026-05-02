@@ -4,9 +4,8 @@ const papers = [
     {
         sem: "Semester II",
         years: [
-            { year: "2025", url: "https://drive.google.com/file/d/1c7ftZiYwfONKj6A1-fzmOpGvp_H5IT45/view", latest: true },
-            { year: "2024", url: "https://drive.google.com/file/d/166eiJJ6V9yHRblj63jCP0OtL8PwScaFB/view" },
-            { year: "2023", url: "https://drive.google.com/file/d/1yqfWLdrd338SLxqf-l-0P7LAigSokPf3/view" },
+            { year: "2025", url: "https://drive.google.com/file/d/1rnX2vsD9iQpas4FPzvy1ei8jYVEr4_YK/view?usp=sharing", latest: true },
+
         ],
     },
     {
