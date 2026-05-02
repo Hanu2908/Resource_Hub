@@ -8,14 +8,14 @@ const papers = [
 
         ],
     },
-    {
-        sem: "Semester I",
-        years: [
-            { year: "2025", url: "https://drive.google.com/file/d/1iVXGW20dPxZLkqbWYWui8U7D9wcVZ46g/view" },
-            { year: "2024", url: "https://drive.google.com/file/d/1XbWoO7-Fk0Evgo0Pyo6gssyrlPPlGvpS/view" },
-            { year: "2023", url: "https://drive.google.com/file/d/1TNMqMQcQPsGm4WD13mVuuMAfGkCT5ber/view" },
-        ],
-    },
+    // {
+    //     sem: "Semester I",
+    //     years: [
+    //         { year: "2025", url: "https://drive.google.com/file/d/1iVXGW20dPxZLkqbWYWui8U7D9wcVZ46g/view" },
+    //         { year: "2024", url: "https://drive.google.com/file/d/1XbWoO7-Fk0Evgo0Pyo6gssyrlPPlGvpS/view" },
+    //         { year: "2023", url: "https://drive.google.com/file/d/1TNMqMQcQPsGm4WD13mVuuMAfGkCT5ber/view" },
+    //     ],
+    // },
 ];
 
 function handleCardEnter(e) {
@@ -43,7 +43,7 @@ export default function PYQSection() {
         <section style={{ padding: "1.5rem 0" }}>
 
           <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#ffffff", marginBottom: "4px" }}>
-              Previous Year Papers
+                Previous Year Papers- AUTONOMOUS
           </h2>
           <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem" }}>
               End-term question papers — all subjects combined
