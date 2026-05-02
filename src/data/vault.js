@@ -114,7 +114,7 @@ export const VAULT = [
         "https://drive.google.com/file/d/1oMcZULribNrhMRbBj_Rzx_Qd-L_xxrOF/view?usp=drive_link",
       notes:
         "https://drive.google.com/drive/folders/1qWj6cloqtWFRHkkdOSwCGu3PLSj9Bst-?usp=drive_link",
-      pyqs: "",
+      pyqs: "https://drive.google.com/drive/folders/1rdnZDqr1VAwVLVLHHWzOhbokxo9dby_y?usp=drive_link",
       practice:
         "https://drive.google.com/drive/folders/1GLTJ8vVav108dP9_sxqK6g98tObFeR0B?usp=drive_link",
       lab: "https://drive.google.com/drive/folders/17S4pPwx8q3mGdVr1pnuQ1eOvGxY466Sy?usp=drive_link",
