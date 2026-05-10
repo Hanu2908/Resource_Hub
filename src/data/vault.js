@@ -149,7 +149,7 @@ export const VAULT = [
         "https://drive.google.com/file/d/1NCGKS7haPx_9imhAfDNxIxYZD7WCDjK9/view?usp=drive_link",
       notes:
         "https://drive.google.com/file/d/1NCGKS7haPx_9imhAfDNxIxYZD7WCDjK9/view?usp=drive_link",
-      pyqs: "",
+      pyqs: "https://drive.google.com/drive/folders/1xIwWT_2dQ240TaINVrqP7pVsjwkrBN6F?usp=drive_link",
       practice: "",
     },
   },
