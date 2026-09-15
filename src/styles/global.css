@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 /* CSS variables are injected by App.jsx from config.js THEME object */
 
@@ -13,111 +13,97 @@ html, body {
   color: var(--text-primary);
   font-family: 'IBM Plex Sans', sans-serif;
   min-height: 100vh;
-  /* Prevent horizontal scroll on mobile */
   overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { display: none; }
 
-/* ── FONT FLASH PREVENTION ── */
-/* While Bebas Neue loads, fallback renders in a similar condensed style */
 @font-face {
   font-family: 'Bebas Neue';
   font-display: swap;
 }
 
-
 /* ── ANIMATIONS ── */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.2; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.95); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── UTILITY CLASSES ── */
-.fade-in  { animation: fadeIn 0.2s ease; }
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes upvotePop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.fade-in  { animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.modal-anim { animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
 .live-dot { animation: pulse 2s ease-in-out infinite; }
 
 /* ── BRANCH FILTER BUTTONS ── */
 .branch-btn {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border: 1.5px solid var(--border-mid);
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.12s;
+  transition: all 0.15s ease;
   white-space: nowrap;
   flex-shrink: 0;
-  /* Tap target size for mobile */
-  min-height: 32px;
+  min-height: 34px;
   display: flex;
   align-items: center;
+  border-radius: 4px;
+}
+.branch-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
 .branch-btn.active {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-faint);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
-/* ── TAB NAV ── */
-.tab-btn {
-  flex: 1;
+/* ── CATEGORY PILLS ── */
+.cat-pill {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  padding: 9px 4px;
-  border: none;
-  background: transparent;
-  color: var(--text-meta);
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1.5px;
-  transition: all 0.12s;
-  /* Tap target */
-  min-height: 40px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+.cat-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
-
-/* ── SCHEDULE ROWS ── */
-.exam-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--border-faint);
-  transition: opacity 0.2s;
-}
-.exam-row:last-child { border: none; }
-.exam-row.done { opacity: 0.9; }
-.exam-row.done .exam-subject-name { 
-  text-decoration: line-through;
-  color: var(--border-strong);
-}
-/* ── VAULT GRID ── */
-/* Mobile first: single column so cards have full width */
-.vault-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-}
-
-/* Two columns only when there is enough space (≥ 480px) */
-@media (min-width: 480px) {
-  .vault-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.cat-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0A0A0F;
+  font-weight: 700;
 }
 
 /* ── INPUTS ── */
@@ -126,120 +112,150 @@ html, body {
   background: var(--bg-card);
   border: 1.5px solid var(--border-mid);
   color: var(--text-primary);
-  padding: 9px 11px;
+  padding: 10px 14px;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
-  transition: border-color 0.12s;
-  margin-bottom: 6px;
-  /* Prevent iOS zoom on focus (needs font-size >= 16px or this fix) */
-  font-size: max(13px, 16px);
+  transition: all 0.15s ease;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
-.cc-input:focus  { border-color: var(--accent); }
-.cc-textarea     { resize: vertical; min-height: 66px; line-height: 1.5; }
+.cc-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+.cc-textarea {
+  resize: vertical;
+  min-height: 70px;
+  line-height: 1.5;
+}
 
 /* ── BUTTONS ── */
 .btn-primary {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  padding: 8px 18px;
+  padding: 10px 18px;
   border: 1.5px solid var(--accent);
-  background: transparent;
-  color: var(--accent);
+  background: var(--accent);
+  color: #0A0A0F;
   cursor: pointer;
-  transition: all 0.12s;
-  min-height: 40px;
+  transition: all 0.15s ease;
+  min-height: 42px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .btn-primary:hover {
-  background: var(--accent);
-  color: var(--bg-page);
+  background: #9d71ff;
+  border-color: #9d71ff;
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
 }
 
-/* ── NOTICE CARDS ── */
-.notice-card {
-  border: 1px solid var(--border-faint);
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  position: relative;
-}
-.notice-card.pinned {
-  border-color: rgba(245, 197, 24, 0.2);
-  border-left: 3px solid var(--accent);
-}
-
-.notice-del {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #252525;
+.btn-secondary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--border-mid);
+  background: transparent;
+  color: var(--text-secondary);
   cursor: pointer;
-  font-size: 16px;
-  line-height: 1;
-  transition: color 0.1s;
-  /* Tap target */
-  padding: 4px;
-  min-width: 28px;
-  min-height: 28px;
+  transition: all 0.15s ease;
+  border-radius: 6px;
+}
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* ── UPVOTE BUTTON ── */
+.upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+.upvote-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-faint);
+}
+.upvote-btn.upvoted {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+  animation: upvotePop 0.3s ease;
+}
+.upvote-btn:active {
+  transform: scale(0.92);
+}
+
+/* ── RESOURCE CARD ── */
+.resource-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: all 0.15s ease;
+  gap: 12px;
+}
+.resource-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-mid);
+  transform: translateY(-1px);
+}
+
+/* ── MODAL BACKDROP ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px;
 }
-.notice-del:hover { color: var(--status-urgent); }
+.modal-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-mid);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
 
-/* ── FOOTER NOTE — wraps gracefully on narrow screens ── */
+/* ── FOOTER NOTE ── */
 .footer-note {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  color: var(--border-mid);
+  color: var(--border-strong);
   text-align: center;
   letter-spacing: 1px;
-  margin-top: 18px;
+  margin-top: 24px;
   line-height: 1.8;
-  /* Allow long strings to wrap instead of overflowing */
   word-break: break-word;
-}
-
-/* ── MOBILE FIXES (≤ 480px) ── */
-@media (max-width: 480px) {
-
-  /* Branch filter — bigger tap targets */
-  .branch-btn {
-    font-size: 11px;
-    padding: 8px 14px;
-    min-height: 40px;
-  }
-
-  /* Tab nav — bigger tap targets */
-  .tab-btn {
-    font-size: 11px;
-    padding: 12px 4px;
-    min-height: 44px;
-  }
-
-  /* Schedule rows — more breathing room */
-  .exam-row {
-    padding: 13px 0;
-    gap: 12px;
-  }
-
-  /* Footer notes — readable */
-  .footer-note {
-    font-size: 11px;
-    line-height: 1.9;
-  }
-
-  /* Vault grid — always single column on mobile */
-  .vault-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  /* Notice cards */
-  .notice-card {
-    padding: 14px;
-  }
 }

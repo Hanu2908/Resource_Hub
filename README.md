@@ -1,6 +1,6 @@
 # Resource Hub
 
-A mobile-first academic portal and exam countdown tracker built with React and Vite. Designed as a lightweight, zero-database template for Class Representatives (CRs) and student organizations to distribute course materials, previous year question papers (PYQs), syllabus copies, and real-time exam schedules.
+A mobile-first, crowdsourced academic portal built with React, Vite, and Supabase. Dedicated exclusively to unifying study materials, lecture notes, syllabus copies, lab manuals, and previous year question papers (PYQs) into a single, student-curated vault.
 
 Live Deployment: [https://resource-hub-drab.vercel.app/](https://resource-hub-drab.vercel.app/)
 
@@ -8,24 +8,24 @@ Live Deployment: [https://resource-hub-drab.vercel.app/](https://resource-hub-dr
 
 ## Features
 
-- **Live Exam Countdown:** Real-time countdown timer tracking upcoming examinations with branch-specific filtering.
-- **Resource Vault:** Organized subject directories linking directly to external cloud storage (Google Drive) for syllabus documents, handwritten notes, PYQs, practice question banks, and lab manuals.
-- **Autonomous PYQ Directory:** Dedicated section for consolidated end-term question papers categorized by semester and year.
-- **Single-File Configuration:** Branding, branch options, contact links, tab visibility, and theme colors are managed through a central configuration file.
-- **Zero-Database Architecture:** Fully static data structure powered by JavaScript object definitions. Requires no backend infrastructure or database setup.
-- **Mobile-Optimized UI:** Designed with a mobile-first layout, native Web Share API integration, and direct WhatsApp contact channels.
-- **Telemetry:** Built-in Vercel Analytics integration for tracking traffic and resource usage.
+- **100% Crowdsourced Study Vault:** Anyone can contribute lecture notes, syllabus copies, lab manuals, or PYQ drive links directly through the "+ Contribute" portal.
+- **Community-Curated Quality (Upvotes):** No arbitrary verification badges. Quality is determined purely by student upvotes—the best and most helpful materials naturally rise to the top.
+- **Instant Search & Deep Discovery:** Real-time search across subject names, codes, unit topics, years, and contributor credits.
+- **Branch & Category Filtering:** Seamless filtering by engineering branches (`AI/IT`, `CSE`, `ME`, `EC/EE`, `ALL`) and material types (`Notes`, `PYQs`, `Labs`, `Syllabus`, `Practice`).
+- **Direct Cloud & Drive Access:** One-tap direct access to Google Drive folders and PDF files.
+- **Powered by Supabase:** Real-time PostgreSQL database with atomic upvoting, Row-Level Security, and instant contribution storage.
+- **Mobile-First Cyber Aesthetic:** Deep dark violet palette, Google Fonts (Bebas Neue, IBM Plex Mono), and smooth micro-animations.
 
 ---
 
 ## Tech Stack
 
-- **Framework:** React 18
-- **Build Tool:** Vite 6
-- **Styling:** Vanilla CSS utilizing CSS Custom Properties for runtime theme injection
-- **Typography:** Google Fonts (Bebas Neue, IBM Plex Mono)
+- **Frontend:** React 18, Vite 6
+- **Backend & Database:** Supabase (PostgreSQL, Row Level Security)
+- **Styling:** Vanilla CSS with CSS Custom Properties and responsive mobile design
+- **Typography:** Google Fonts (Bebas Neue, IBM Plex Mono, IBM Plex Sans)
 - **Analytics:** `@vercel/analytics`
-- **Deployment:** Vercel (Static Web App)
+- **Deployment:** Vercel
 
 ---
 
@@ -33,28 +33,25 @@ Live Deployment: [https://resource-hub-drab.vercel.app/](https://resource-hub-dr
 
 ```text
 Resource_Hub/
-├── index.html              # HTML entry point and PWA/mobile meta tags
-├── package.json            # Dependencies and scripts
+├── index.html              # HTML entry point and mobile meta tags
+├── package.json            # Dependencies and build scripts
 ├── vite.config.js          # Vite configuration
-├── public/                 # Static assets and icons
+├── .env                    # Supabase API URL and anon keys
+├── public/                 # Static icons and assets
 └── src/
     ├── main.jsx            # React root mount
-    ├── App.jsx             # Root component and navigation state
-    ├── config.js           # Central configuration (branding, tabs, theme)
+    ├── App.jsx             # Main application layout, live search, and filters
+    ├── config.js           # Central configuration (branding, branches, theme)
+    ├── lib/
+    │   └── supabase.js     # Supabase client and query/upvoting functions
     ├── components/
-    │   ├── HeroCountdown.jsx   # Top countdown hero banner
-    │   ├── ScheduleTab.jsx     # Examination timeline view
-    │   ├── VaultTab.jsx        # Subject resource cards and Drive links
-    │   ├── PYQSection.jsx      # End-term question paper repository
-    │   ├── NoticesTab.jsx      # Class announcements (optional tab)
-    │   ├── TemplatesTab.jsx    # Document and format templates (optional tab)
-    │   └── UI.jsx              # Shared visual primitives
-    ├── data/
-    │   ├── exams.js        # Examination schedule dataset
-    │   ├── vault.js        # Subject folders and cloud links
-    │   └── templates.js    # Downloadable template metadata
+    │   ├── CommunityHero.jsx   # Crowdsourcing highlight banner & stats counter
+    │   ├── ContributeModal.jsx # Student material contribution modal
+    │   ├── ResourceCard.jsx    # Resource row with interactive upvote button
+    │   ├── VaultTab.jsx        # Subject groupings, categories & sort controls
+    │   └── UI.jsx              # Shared micro-primitives
     └── styles/
-        └── global.css      # Base CSS reset, typography, and utility classes
+        └── global.css      # Core styles, animations, upvote glow, and mobile resets
 ```
 
 ---
